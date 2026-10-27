@@ -1,0 +1,12 @@
+# Core Reinforcement Learning and Environment
+gymnasium>=0.29.1
+stable-baselines3>=2.3.2
+torch>=2.2.0
+
+# Configuration, Utilities and Data
+pyyaml>=6.0.1
+numpy>=1.26.0,<3.0.0
+pandas>=2.2.0
+
+# Development and Testing
+pytest>=8.0.0

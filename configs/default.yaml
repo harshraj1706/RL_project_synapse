@@ -1,0 +1,40 @@
+# SYNAPSE ARENA - Default Configuration
+# Note: Initialized with safe smoke-test parameters for software pipeline verification.
+# Full training parameters will be configured after official environment inspection.
+
+seed: 42
+
+env:
+  name: "synthetic"           # "synthetic" (pipeline smoke test) or "official" (requires Phase 2 integration)
+  track: null                 # Official map name or track identifier once announced
+  render_mode: null           # e.g., "human" or null for headless execution
+
+algorithm:
+  name: "PPO"
+  policy: "MlpPolicy"
+  learning_rate: 0.0003
+  n_steps: 64                 # Small rollout buffer for fast smoke testing
+  batch_size: 32
+  gamma: 0.99
+  gae_lambda: 0.95
+  clip_range: 0.2
+  ent_coef: 0.0
+
+training:
+  total_timesteps: 64         # Smoke test budget: 64 steps only (does NOT consume competition budget)
+  checkpoint_dir: "checkpoints/smoke_test"
+  log_dir: "logs/smoke_test"
+  save_freq: 64
+  device: "auto"
+  resume_checkpoint: null
+
+evaluation:
+  episodes: 2
+  deterministic: true
+  results_dir: "eval_results/smoke_test"
+  save_csv: true
+
+reward:
+  use_custom_shaping: false   # Default: pass-through official reward untouched
+  speed_weight: 0.0
+  collision_penalty: 0.0
